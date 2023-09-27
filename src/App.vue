@@ -1,26 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Vue Weather App</h1>
+    <WeatherForm @weather-fetched="updateWeather" />
+    <WeatherCard
+      v-if="weather"
+      :location="weather.location"
+      :temperature="weather.temperature"
+      :conditions="weather.conditions"
+      :humidity="weather.humidity"
+      :windSpeed="weather.windSpeed"
+    />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WeatherForm from './components/WeatherForm.vue';
+import WeatherCard from './components/WeatherCard.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    WeatherForm,
+    WeatherCard
+  },
+  data() {
+    return {
+      weather: null
+    };
+  },
+  methods: {
+    updateWeather(data) {
+      this.weather = data;
+    }
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

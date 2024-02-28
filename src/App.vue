@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <h1>Vue Weather App</h1>
     <WeatherForm @weather-fetched="updateWeather" />
     <WeatherCard
